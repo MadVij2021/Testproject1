@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-enable = st.checkbox("Enable camera")
+enable = st.checkbox("Hows it?")
 picture = st.camera_input("Take a picture", disabled=not enable)
 
 if picture:
