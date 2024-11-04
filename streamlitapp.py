@@ -6,7 +6,7 @@ from mediapipe import solutions
 from mediapipe.framework.formats import landmark_pb2
 import numpy as np
 import cv2
-from streamlit_webrtc import VideoTransformerBase, webrtc_streamer
+from streamlit_webrtc import VideoTransformerBase, webrtc_streamer, WebRtcMode
 from PIL import Image
 
 MODEL_PATH = "pose_landmarker_heavy.task"
@@ -64,7 +64,9 @@ class VideoTransformer(VideoTransformerBase):
         return annotated_image
 
 
-webrtc_streamer(key="example", video_processor_factory=VideoTransformer)
+webrtc_streamer(key="example", video_processor_factory=VideoTransformer,mode=WebRtcMode.SENDRECV,
+    media_stream_constraints={"video": True, "audio": False},
+    async_processing=True)
 
 
 
