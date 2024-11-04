@@ -9,7 +9,7 @@ import cv2
 from streamlit_webrtc import VideoTransformerBase, webrtc_streamer
 from PIL import Image
 
-MODEL_PATH = "D:/SIH 2024/pose_landmarker_heavy.task"
+MODEL_PATH = "pose_landmarker_heavy.task"
 
 # Drawing landmarks
 def draw_landmarks_on_image(rgb_image, detection_result):
