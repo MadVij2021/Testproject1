@@ -36,7 +36,7 @@ st.write("Using MediaPipe and Streamlit to track poses in real-time.")
 # run = st.checkbox('Start Webcam')
 
 # PoseLandmarker options and model
-base_options = python.BaseOptions(use_gpu=False,model_asset_path=MODEL_PATH)
+base_options = python.BaseOptions(delegate=0,model_asset_path=MODEL_PATH)
 options = vision.PoseLandmarkerOptions(
     base_options=base_options,
     output_segmentation_masks=True)
