@@ -64,7 +64,7 @@ class VideoTransformer(VideoTransformerBase):
         return annotated_image
 
 
-webrtc_streamer(key="example", video_transformer_factory=VideoTransformer)
+webrtc_streamer(key="example", video_processor_factory=VideoTransformer)
 
 
 
