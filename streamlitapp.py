@@ -8,6 +8,7 @@ import numpy as np
 import cv2
 from streamlit_webrtc import VideoTransformerBase, webrtc_streamer, WebRtcMode
 from PIL import Image
+import asyncio
 
 MODEL_PATH = "pose_landmarker_heavy.task"
 
@@ -64,10 +65,19 @@ class VideoTransformer(VideoTransformerBase):
         return annotated_image
 
 
-webrtc_streamer(key="example", video_processor_factory=VideoTransformer,mode=WebRtcMode.SENDRECV,
+async def streamlitapp():
+    try:
+        webrtc_streamer(key="example", video_processor_factory=VideoTransformer,mode=WebRtcMode.SENDRECV,
     media_stream_constraints={"video": True, "audio": False},
     async_processing=True)
+        
+    except asyncio.TimeoutError:
+        print("Timeout occurred")
+    except Exception as e:
+        print(f"Unhandled exception: {e}")
 
+
+asyncio.run(streamlitapp())
 
 
 
