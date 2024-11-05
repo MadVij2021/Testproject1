@@ -65,19 +65,24 @@ class VideoTransformer(VideoTransformerBase):
         return annotated_image
 
 
-async def streamlitapp():
-    try:
-        webrtc_streamer(key="example", video_processor_factory=VideoTransformer,mode=WebRtcMode.SENDRECV,
-    media_stream_constraints={"video": True, "audio": False},
-    async_processing=True)
+# def main():
+    
+webrtc_streamer(
+    key="example",
+    video_processor_factory=VideoTransformer,
+    rtc_configuration={  # Add this line
+        "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
+    }
+)
         
-    except asyncio.TimeoutError:
-        print("Timeout occurred")
-    except Exception as e:
-        print(f"Unhandled exception: {e}")
+    # except asyncio.TimeoutError:
+    #     print("Timeout occurred")
+    # except Exception as e:
+    #     print(f"Unhandled exception: {e}")
 
+# if __name__=="__main__":
+#     main()
 
-asyncio.run(streamlitapp())
 
 
 
