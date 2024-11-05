@@ -31,4 +31,8 @@ class VideoTransformer(VideoTransformerBase):
         # Return the processed frame
         return edges_colored
 
+
+
 webrtc_streamer(key="example", video_transformer_factory=VideoTransformer)
+
+
