@@ -2,4 +2,5 @@ streamlit
 mediapipe
 opencv-python
 numpy
+twilio
 streamlit_webrtc==0.47.7

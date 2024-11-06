@@ -49,30 +49,30 @@ class VideoTransformer(VideoTransformerBase):
         img = frame.to_ndarray(format="bgr24")
         frame = cv2.flip(img, 1)
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb_frame)
+    #     mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb_frame)
 
-    # # Pose detection
-        detection_result = detector.detect(mp_image)
+    # # # Pose detection
+    #     detection_result = detector.detect(mp_image)
 
-        # Draw landmarks
-        annotated_image = draw_landmarks_on_image(mp_image.numpy_view(), detection_result)
+    #     # Draw landmarks
+    #     annotated_image = draw_landmarks_on_image(mp_image.numpy_view(), detection_result)
 
 
         # Display the frame in Streamlit
 
         # Flip and process image for MediaPipe
     
-        return annotated_image
+        return rgb_frame
 
 
 # def main():
     
 webrtc_streamer(
     key="example",
-    video_processor_factory=VideoTransformer,
-    rtc_configuration={  # Add this line
-        "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
-    }
+    video_transformer_factory=VideoTransformer
+    # rtc_configuration={  # Add this line
+    #     "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
+    # }
 )
         
     # except asyncio.TimeoutError:
